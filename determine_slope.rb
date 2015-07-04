@@ -1,6 +1,14 @@
 #!usr/bin/env ruby
 
-def calcualteSlope
+# The function calculateSlope
+# asks user for two x,y coordinates
+# Then splits each coordinate into an array
+# Using the map method, converts them to a float
+# Then each part of the array is assigned
+# either x1, x2, y1, or y2
+# Then, the slop itself is calculated
+# After that, we determine if the slope is positive, negative, or neither 
+def calculateSlope
   puts "Enter first coordinate: x,y"
   first_coord = gets.split(",").map { |s| s.to_f }
   puts "Enter second coordinate: x,y"
@@ -19,4 +27,4 @@ def calcualteSlope
   end
   return "The slope is #{slope} and #{slope_sign}."
 end
-puts calcualteSlope
+puts calculateSlope
