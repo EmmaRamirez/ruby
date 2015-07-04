@@ -31,3 +31,4 @@ Find Prime | find_primes.rb | Finds primes up to given n
 Odd or Even? | determine_odd_or_even.rb | Determines if int is odd or even
 Determine Slope & Slope Sign | determine_slope.rb | Determines slope of two arbitrary points and then if that slope is positive, negative, or neither
 Unit Pulse | unit_pulse.rb | Unit Pulse function
+Compound Interest | compound_interest.rb | Compound Interest function
