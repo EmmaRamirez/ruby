@@ -28,6 +28,11 @@ Factorial | factorial.rb | Third while loop example
 Until Loop | until_loop.rb | Until loop structure
 Nested For Loop | nested_for_loop.rb | Nested for loop example
 Find Prime | find_primes.rb | Finds primes up to given n
+Find Maximum | find_maximum.rb | Finds maximum number
+Find Minimum | find_minimum.rb | Finds minimum number
+Output Multidemsional Array | output_multi_array.rb | Outputs array with 2 dimensions
+Create A Hash | create_a_hash.rb | Creates a hash of student scores
+Find the max Hash | max_hash.rb | Finds maximum in a hash with arrays
 Odd or Even? | determine_odd_or_even.rb | Determines if int is odd or even
 Determine Slope & Slope Sign | determine_slope.rb | Determines slope of two arbitrary points and then if that slope is positive, negative, or neither
 Unit Pulse | unit_pulse.rb | Unit Pulse function
