@@ -20,3 +20,4 @@ Theater Admission 3 | theater_admission_3.rb | Changes price based on user age
 Case Statement | case_statement.rb | Case statement outline
 For Loop 1 | for_loop_1.rb | For loop with array
 For Loop 2 | for_loop_2.rb | For loop with hashes
+Odd or Even? | determine_odd_or_even.rb | Determines if int is odd or even
