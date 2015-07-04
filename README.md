@@ -36,5 +36,6 @@ Find the max Hash | max_hash.rb | Finds maximum in a hash with arrays
 Odd or Even? | determine_odd_or_even.rb | Determines if int is odd or even
 Determine Slope & Slope Sign | determine_slope.rb | Determines slope of two arbitrary points and then if that slope is positive, negative, or neither
 Linear Search | linear_search.rb | linear search algorithm example with grades
+Binary Search | binary_search.rb | binary search algorithm example with grades
 Unit Pulse | unit_pulse.rb | Unit Pulse function
 Compound Interest | compound_interest.rb | Compound Interest function
