@@ -39,3 +39,4 @@ Linear Search | linear_search.rb | linear search algorithm example with grades
 Binary Search | binary_search.rb | binary search algorithm example with grades
 Unit Pulse | unit_pulse.rb | Unit Pulse function
 Compound Interest | compound_interest.rb | Compound Interest function
+Split Method | split_method.rb | Method example using split on a sentence
