@@ -14,3 +14,9 @@ Filename | Filepath | Involves
 Hello World | hello_world.rb | Basic
 Print Name | print_name.rb | Puts using input
 Rectangle Measurer | rectangle_measurer.rb | Measures area of rectangle
+Theater Admission 1 | theater_admission.rb | Changes price based on user age
+Theater Admission 2 | theater_admission_2.rb | Changes price based on user age
+Theater Admission 3 | theater_admission_3.rb | Changes price based on user age
+Case Statement | case_statement.rb | Case statement outline
+For Loop 1 | for_loop_1.rb | For loop with array
+For Loop 2 | for_loop_2.rb | For loop with hashes
