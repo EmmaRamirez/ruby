@@ -23,3 +23,4 @@ For Loop 1 | for_loop_1.rb | For loop with array
 For Loop 2 | for_loop_2.rb | For loop with hashes
 Odd or Even? | determine_odd_or_even.rb | Determines if int is odd or even
 Determine Slope & Slope Sign | determine_slope.rb | Determines slope of two arbitrary points and then if that slope is positive, negative, or neither
+Unit Pulse | unit_pulse.rb | Unit Pulse function
