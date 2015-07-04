@@ -18,9 +18,14 @@ Theater Admission 1 | theater_admission.rb | Changes price based on user age
 Theater Admission 2 | theater_admission_2.rb | Changes price based on user age
 Theater Admission 3 | theater_admission_3.rb | Changes price based on user age
 Random Number Guess | random_number_guess.rb | Guess a random int game
-Case Statement | case_statement.rb | Case statement outline
+Case Statement | case_statement.rb | Case statement structure
 For Loop 1 | for_loop_1.rb | For loop with array
 For Loop 2 | for_loop_2.rb | For loop with hashes
+While Loop | while_loop.rb | While loop structure
+While Loop 2 | while_loop_2.rb | While loop example
+Until Loop | until_loop.rb | Until loop structure
+Nested For Loop | nested_for_loop.rb | Nested for loop example
+Find Prime | find_primes.rb | Finds primes up to given n
 Odd or Even? | determine_odd_or_even.rb | Determines if int is odd or even
 Determine Slope & Slope Sign | determine_slope.rb | Determines slope of two arbitrary points and then if that slope is positive, negative, or neither
 Unit Pulse | unit_pulse.rb | Unit Pulse function
