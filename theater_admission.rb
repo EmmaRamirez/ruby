@@ -17,4 +17,5 @@ else
   cost = 18
 end
 
+# cost.to_s is a method that converts cost to a string
 puts "Ticket cost: " + cost.to_s
