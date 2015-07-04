@@ -7,3 +7,10 @@ In order to run any of these, just open up your Ruby Interpreter and run the fol
 ```
 $ ruby [filename].rb
 ```
+
+Below is a list of each file, the filepath, and what they involve, as well as the date added:
+
+Filename | Filepath | Involves
+Hello World | hello_world.rb | Basic
+Print Name | print_name.rb | Puts using input
+Rectangle Measurer | rectangle_measurer.rb | Measures area of rectangle
