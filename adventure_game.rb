@@ -6,33 +6,45 @@ require_relative 'ag_hero.rb'
 current_exploration = ''
 explore_choice = ''
 
+
 # game intro screen
 load_game_intro
 
 puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?"
-name = gets.chomp
-puts "Hmm... #{name}? What a strange name.\nWhat class do you belong to?"
-puts "[1] Mage [2] Knight [3] Warrior"
-hero_class = gets.to_i
-if (name != nil)
-  if (hero_class == 1)
-    name = Hero.new(name, 100, 0, 1, 'Mage')
-  elsif (hero_class == 2)
-    name = Hero.new(name, 100, 0, 1, 'Knight')
-  elsif (hero_class == 3)
-    name = Hero.new(name, 100, 0, 1, 'Warrior')
-  else
-    # default to mage
-    name = Hero.new(name, 100, 'Mage')
-  end
+
+def reminder
+  puts "Sorry, I didn't quite catch that. Only enter a number."
 end
 
-puts "Beginning adventure..."
-name.status
+def ask_for_name
+  name = gets.chomp
+  puts "Hmm... #{name}? What a strange name.\nWhat class do you belong to?"
+  puts "[1] Mage [2] Knight [3] Warrior"
+  hero_class = gets.to_i
+  if (name != nil)
+    name = Hero.new(name, 100, 0, 1, '')
+    if (hero_class == 1)
+      name.set_class('Mage')
+    elsif (hero_class == 2)
+      name.set_class('Knight')
+    elsif (hero_class == 3)
+      name.set_class('Warrior')
+    else
+      reminder
+      ask_for_name
+    end
+  end
+  puts "Beginning adventure..."
+  name.status
+end
+
+ask_for_name
+
 
 def explore_message(place)
   puts "You decided to explore the " + place
 end
+
 
 def explore
   puts "What will you do first?"
@@ -48,10 +60,10 @@ def explore
     current_exploration = 'plains'
     explore_message('plains')
   else
-    puts "Sorry, I didn't quite catch that. Only enter a number."
+    reminder
     explore
   end
-  return explore_choice
+  puts "While exploring the " + current_exploration + ", you run into a !!!"
 end
 
 explore
@@ -59,5 +71,3 @@ explore
 def event(num)
   num = rand(num)
 end
-
-puts "While exploring the " + explore_choice + ", you run into a !!!"
