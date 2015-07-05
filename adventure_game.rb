@@ -2,7 +2,6 @@
 
 require_relative 'ag_load_game.rb'
 require_relative 'ag_hero.rb'
-require_relative 'ag_hero_classes.rb'
 
 current_exploration = ''
 explore_choice = ''
@@ -17,11 +16,11 @@ puts "[1] Mage [2] Knight [3] Warrior"
 hero_class = gets.to_i
 if (name != nil)
   if (hero_class == 1)
-    name = Hero.new(name, 100, 'Mage')
+    name = Hero.new(name, 100, 0, 1, 'Mage')
   elsif (hero_class == 2)
-    name = Hero.new(name, 100, 'Knight')
+    name = Hero.new(name, 100, 0, 1, 'Knight')
   elsif (hero_class == 3)
-    name = Hero.new(name, 100, 'Warrior')
+    name = Hero.new(name, 100, 0, 1, 'Warrior')
   else
     # default to mage
     name = Hero.new(name, 100, 'Mage')
