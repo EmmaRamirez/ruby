@@ -9,6 +9,11 @@ class Hero
     @hero_class = hero_class
   end
 
+  def set_class(hero_class)
+    @hero_class = hero_class
+  end
+
+
   def lower_hp(amount)
     @hp -= amount
   end
