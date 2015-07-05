@@ -40,3 +40,6 @@ Binary Search | binary_search.rb | binary search algorithm example with grades
 Unit Pulse | unit_pulse.rb | Unit Pulse function
 Compound Interest | compound_interest.rb | Compound Interest function
 Split Method | split_method.rb | Method example using split on a sentence
+Split Method 2 | split_method_2.rb | Method example using split (again)
+1337 Speak Translator | 1337_speak_translato.rb & gsub_example.rb | Uses gsub to translate text into 1337
+Three Word Program | three_words.rb | Prompts for three words and returns total and avg
