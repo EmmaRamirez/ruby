@@ -24,4 +24,8 @@ class Monster
     @hp += amount
   end
 
+  def set_hp(amount)
+    @hp = amount
+  end
+
 end
