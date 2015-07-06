@@ -7,7 +7,7 @@ require_relative 'ag_monster.rb'
 
 current_exploration = ''
 explore_choice = ''
-num_of_turns = 1
+$num_of_turns = 0
 $seed = rand(3)
 $current_monster = ''
 $areas_unlocked = ['forest', 'desert', 'plains']
@@ -45,7 +45,7 @@ def sleep
   puts "#{$name.name} became fully healed!"
 end
 
-def rest
+def nap
   $name.edit_hp(33)
   puts "#{$name.name} recovered 33 HP! Feeling so refreshed!"
 end
@@ -330,16 +330,16 @@ explore
 
 def home
   puts "You decided to settle down for a bit."
-  num_of_turns += 1
+  $num_of_turns += 1
   allow_sleep = false
-  if num_of_turns == 1
+  if $num_of_turns == 1
     puts "The day is young. The sun sings. There is still morning dew."
-  elsif num_of_turns == 2
+  elsif $num_of_turns == 2
     puts "The noon is now. Birds sing cheerful tunes."
-  elsif num_of_turns == 3
+  elsif $num_of_turns == 3
     puts "The sun is setting. A truly gorgeous horizon."
     allow_sleep = true
-  elsif num_of_turns == 4
+  elsif $num_of_turns == 4
     puts "The night has set in. You should sleep for the night."
     allow_sleep = true
   end
