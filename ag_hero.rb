@@ -53,7 +53,7 @@ class Hero
   end
 
   def edit_exp(amount)
-    @exp += exp
+    @exp += amount
   end
 
   def exp
