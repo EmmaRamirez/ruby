@@ -7,6 +7,7 @@ current_exploration = ''
 explore_choice = ''
 $seed = rand(3)
 $current_monster = ''
+$areas_unlocked = ['forest', 'desert', 'plains']
 
 # game intro screen
 load_game_intro
@@ -45,14 +46,17 @@ def ask_for_caste
       $name.set_class('Mage')
       puts "Oh, a mage! So you must really like magic."
       ensure_caste
+      $name.edit_powers(0, 5, 0)
     elsif (hero_class == 2)
       $name.set_class('Knight')
       puts "Oh, a knight! So you must really like defense."
       ensure_caste
+      $name.edit_powers(0, 0, 5)
     elsif (hero_class == 3)
       $name.set_class('Warrior')
       puts "Oh, a warrior! So you must really like strength."
       ensure_caste
+      $name.edit_powers(5, 0, 0)
     else
       reminder
       ask_for_caste
@@ -133,7 +137,7 @@ def explore
     reminder
     explore
   end
-  puts "While exploring the " + current_exploration + ", you run into a #{$current_monster}!!"
+  puts "While exploring the " + current_exploration + ", you run into a #{summon_monster(current_exploration)}!!"
   fight_decision
 end
 

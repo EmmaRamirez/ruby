@@ -50,7 +50,11 @@ class Hero
     @gems -= subtract_amount
   end
 
-
+  def edit_powers(strength, magic, defense)
+    @strength += strength
+    @magic += magic
+    @defense += defense
+  end
 
   def check_exp
     # TODO: better equation for exp level up
