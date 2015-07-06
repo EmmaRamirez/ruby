@@ -92,7 +92,7 @@ class Hero
     puts "  HP: " + @hp.to_s + " / 100"
     puts "  Class: " + @hero_class
     puts "  Level: " + @level.to_s + " [" + @exp.to_s + " exp]"
-    puts "  Inventory: " + (@inventory != [] ? "no items" : @inventory.to_s)
+    puts "  Inventory: " + (@inventory != [] ? @inventory.to_s : "no items")
     puts "  Gems: " + @gems.to_s + " gems"
     puts "  Strength: " + @strength.to_s
     puts "  Magic: " + @magic.to_s
