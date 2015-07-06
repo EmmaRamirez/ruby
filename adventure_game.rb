@@ -29,29 +29,52 @@ def are_you_sure?
   end
 end
 
-def ask_for_name
-  name = gets.chomp
-  puts "Hmm... #{name}? What a strange name.\nWhat class do you belong to?"
+def get_name
+  $name = gets.chomp
+  puts "Hmm... #{$name}? What a strange name."
+end
+
+def ask_for_caste
+  puts "What class do you belong to?"
   puts "[1] Mage [2] Knight [3] Warrior"
   hero_class = gets.to_i
-  if (name != nil)
-    name = Hero.new(name, 100, 0, 1, '')
+  if ($name != nil)
+    $name = Hero.new($name, 100, 0, 1, '')
     if (hero_class == 1)
-      name.set_class('Mage')
+      $name.set_class('Mage')
+      puts "Oh, a mage! So you must really like magic, correct?"
+      ensure_caste
     elsif (hero_class == 2)
-      name.set_class('Knight')
+      $name.set_class('Knight')
+      puts "Oh, a mage! So you must really like defense, correct?"
+      ensure_caste
     elsif (hero_class == 3)
-      name.set_class('Warrior')
+      $name.set_class('Warrior')
+      puts "Oh, a mage! So you must really like strength, correct?"
+      ensure_caste
     else
       reminder
-      ask_for_name
+      ask_for_caste
     end
   end
   puts "Beginning adventure..."
-  name.status
+  $name.status
 end
 
-ask_for_name
+def ensure_caste
+  if are_you_sure? == true
+    puts "Great!"
+  else
+    puts "Oh...my bad, then."
+    ask_for_caste
+  end
+end
+
+get_name
+ask_for_caste
+
+
+
 
 
 def explore_message(place)
@@ -59,7 +82,12 @@ def explore_message(place)
 end
 
 def summon_monster(area)
-
+  case area
+  when 'forest'
+    num = rand(3) - 1
+    forestMonsters = ['Imp', 'Beehive', 'Argos']
+    return forestMonsters[num]
+  end
 end
 
 
@@ -85,7 +113,3 @@ def explore
 end
 
 explore
-
-def event(num)
-  num = rand(num)
-end
