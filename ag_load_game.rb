@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-def load_game_intro
-  intro_file = File.open("data/adventure_1.txt", "r")
+def load_game_intro(file_name)
+  intro_file = File.open(file_name, "r")
   whole_file = ""
 
   while (input_file = intro_file.gets)
