@@ -120,6 +120,11 @@ def fight_screen
 end
 
 def fight_attack_monster
+  damage = $current_monster.strength + rand(3) * -1
+
+  puts "The #{$current_monster.species} attacked back!"
+  puts "It inflicted #{$name.strength} damage!"
+  puts "You have #{$name.hp} HP left."
 
 end
 
@@ -133,14 +138,19 @@ def fight_attack
   end
 
   # TODO: either add damage or strength boosters for inventory weapons
+  # TODO: add critical hit ratio & implementation
   damage = rand(10) + $name.strength * -1
   $current_monster.edit_hp(damage)
   puts "You inflicted #{damage * -1} damage!"
   # for debugging
-  puts "The monster has " + $current_monster.hp.to_s + " HP left."
+  puts "The #{$current_monster.species} has " + $current_monster.hp.to_s + " HP left."
   puts " "
 
-  fight_attack_monster
+  if $current_monster.hp < 0
+    puts "Congratulations! You defeated the monster!!"
+  else
+    fight_attack_monster
+  end
 
 end
 
@@ -150,8 +160,9 @@ def fight(monster)
   fight_screen_shown = false
   mon = monster
 
-  if fight_screen_shown = true
+  if fight_screen_shown == false
     fight_screen
+    fight_screen_shown = true
   end
 
   puts "[1] Attack [2] Use Spell"
@@ -181,7 +192,7 @@ def fight_decision
 
     puts "You offer the #{$current_monster.species} a bribe."
     if (calculate_bribe_cost > $name.access_gems)
-      puts "You don't have enought money!"
+      puts "But you don't have enought money!"
       puts "The #{$current_monster.species} attacked!"
       fight($current_monster)
     else
