@@ -109,6 +109,10 @@ def calculate_bribe_cost
   $name.access_level * 100
 end
 
+def game_over
+  load_file("data/adventure_1.txt")
+end
+
 def fight_screen
   puts "+------------------+"
   puts "|    F I G H T!    |"
@@ -123,7 +127,15 @@ def fight(monster)
     fight_screen
   end
 
-  
+  puts "[1] Attack [2] Use Spell"
+  offense_choice = gets.to_i
+
+  if offense_choice == 1
+    fight_attack
+  elsif offense_choice == 2
+    fight_spell
+  end
+
 
 
 end
