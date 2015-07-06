@@ -33,6 +33,10 @@ class Hero
     @level += 1
   end
 
+  def inventory
+    return @inventory
+  end
+
   def raise_exp(amount)
     @exp += exp
   end
