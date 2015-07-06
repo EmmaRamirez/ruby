@@ -242,6 +242,7 @@ def fight_decision
     if (calculate_bribe_cost > $name.access_gems)
       puts "But you don't have enought money!"
       puts "The #{$current_monster.species} attacked!"
+      enter
       fight($current_monster)
     else
       $name.edit_gems((calculate_bribe_cost * -1))
