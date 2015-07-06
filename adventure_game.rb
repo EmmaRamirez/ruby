@@ -19,6 +19,12 @@ def reminder
   puts "Sorry, I didn't quite catch that. Only enter a number."
 end
 
+# This function is used so that the user isn't overwhelmed with a giant
+# block of text all at once...usually!
+def enter
+  enter = gets
+end
+
 def are_you_sure?
   while true
     print "Correct? [y/n]: "
@@ -124,16 +130,19 @@ def fight_screen
 end
 
 def fight_attack_monster
-  damage = $current_monster.strength + rand(3) - ($name.defense / 2) * -1
+  monster_strength_mod = 0
+  hero_defense_mod = 0
 
+  damage = $current_monster.strength + rand(3) - ($name.defense / 2) * -1
+  $name.edit_hp(damage)
   puts "The #{$current_monster.species} attacked back!"
-  puts "It inflicted #{$name.strength} damage!"
+  puts "It inflicted #{damage * -1} damage!"
 
   if $name.hp < 0
     puts "***********************\n   You lost all your health!  \n************************"
     game_over
   elsif $name.hp < 20
-    puts "You have #{$name.hp} HP left..."
+    puts "You have #{$name.hp + damage} HP left..."
     puts "Maybe you should flee.\n [1] Flee [2] Keep Fighting"
     answer = gets
     if answer == 1
@@ -154,6 +163,8 @@ def fight_attack_monster
 end
 
 def fight_attack
+  base_damage = 10
+  hero_strength_mod = 0
   # Get Strength & Defense of Hero
   # Get Strength of Monster
   if $name.inventory.length > 0
@@ -164,7 +175,7 @@ def fight_attack
 
   # TODO: either add damage or strength boosters for inventory weapons
   # TODO: add critical hit ratio & implementation
-  damage = rand(10) + $name.strength * -1
+  damage = base_damage + rand(10) + $name.strength * -1
   $current_monster.edit_hp(damage)
   puts "You inflicted #{damage * -1} damage!"
   # for debugging
