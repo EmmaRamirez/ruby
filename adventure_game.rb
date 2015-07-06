@@ -78,7 +78,7 @@ ask_for_caste
 
 
 def explore_message(place)
-  puts "You decided to explore the " + place
+  puts "You decided to explore the " + place + "..."
 end
 
 def summon_monster(area)
@@ -108,8 +108,8 @@ def explore
     reminder
     explore
   end
-  puts "While exploring the " + current_exploration + ", you run into a !!!"
-  summon_monster(current_exploration)
+  puts "While exploring the " + current_exploration + ", you run into a #{summon_monster(current_exploration)}!!"
+
 end
 
 explore
