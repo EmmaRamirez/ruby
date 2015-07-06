@@ -84,7 +84,7 @@ ask_for_caste
 
 
 def explore_message(place)
-  puts "You decided to explore the " + place + "..."
+  puts "You decide to explore the " + place + "..."
 end
 
 def summon_monster(area)
