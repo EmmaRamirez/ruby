@@ -98,7 +98,19 @@ end
 get_name
 ask_for_caste
 
+def home_options
+  num_of_turns = 1
+  if num_of_turns == 1
+    puts "The day is young. The sun sings. There is still morning dew."
+  elsif num_of_turns == 2
+    puts "The noon is now. Birds sing cheerful tunes."
+  elsif num_of_turns == 3
+    puts "The sun is setting. A truly gorgeous horizon."
+  elsif num_of_turns == 4
+    puts "The night has set in. You should sleep for the night."
 
+      
+end
 
 
 
@@ -144,7 +156,11 @@ def fight_screen
 end
 
 def fight_spoils
-
+  # 20% chance of receiving item after battle
+  num = rand(5)
+  $name.inventory_add("Penis Sword")
+  puts "Wow!"
+  puts $name.inventory.to_s
 end
 
 def fight_attack_monster
@@ -170,9 +186,6 @@ def fight_attack_monster
       puts "You decided to flee!"
     elsif answer == 2
       fight_attack
-    else
-      # TODO: make method you idiot
-      "ERROR: NOT A VALID RESPONSE"
     end
   else
     puts "|| You have #{$name.hp + damage} HP left."
@@ -212,9 +225,7 @@ def fight_attack
     puts "Congratulations! You defeated the monster!!"
     puts "You picked up #{gems_acquired.to_s} gems!"
     puts "You now have a total of #{$name.access_gems.to_s} gems."
-
-
-
+    fight_spoils
     enter
   else
     fight_attack_monster
