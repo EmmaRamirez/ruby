@@ -37,6 +37,10 @@ class Hero
     return @inventory
   end
 
+  def strength
+    return @strength
+  end
+
   def raise_exp(amount)
     @exp += exp
   end
