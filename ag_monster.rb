@@ -12,7 +12,7 @@ class Monster
     return @species
   end
 
-  def access_strength
+  def strength
     return @strength
   end
 

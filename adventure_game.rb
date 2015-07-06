@@ -13,7 +13,7 @@ $areas_unlocked = ['forest', 'desert', 'plains']
 # game intro screen
 load_file("data/adventure_1.txt")
 
-puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?\n"
+# puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?\n"
 
 def reminder
   puts "Sorry, I didn't quite catch that. Only enter a number."
@@ -109,13 +109,21 @@ def calculate_bribe_cost
   $name.access_level * 100
 end
 
-def fight(monster)
+def fight_screen
   puts "+------------------+"
   puts "|    F I G H T!    |"
   puts "+------------------+"
+end
+
+def fight(monster)
+  fight_screen_shown = false
+  if fight_screen_shown = false
+    fight_screen
+  end
   mon = monster
 
 
+  fight_screen_shown = true
 end
 
 def fight_decision
