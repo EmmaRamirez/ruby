@@ -14,5 +14,9 @@
               defeat countless foes, write much clean code,
               and do some pretty cool shit.
 
+              In order to continue, just press enter. For further
+              help, just type the help command after your first
+              excursion into the world!
+
               So what are you waiting for!?
               But first, I need to ask--what's your name?

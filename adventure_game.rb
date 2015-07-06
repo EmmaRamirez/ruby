@@ -15,6 +15,12 @@ load_file("data/adventure_1.txt")
 
 # puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?\n"
 
+# TODO: implement --h command at anytime
+
+def help
+  load_file("data/adventure_3.txt")
+end
+
 def reminder
   puts "Sorry, I didn't quite catch that. Only enter a number."
 end
