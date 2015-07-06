@@ -394,14 +394,15 @@ def market
     "Sorry, I didn't quite catch that..."
   end
 
-  puts "Are you done shopping? [y/n]"
-  response = gets
-  if response == /^[yY]/
-    "Clerk: Ok, have a great day!\nYou decided to return to your base camp."
-    home
-  else
-    market
-  end
+  # TODO: make this work
+  # puts "Are you done shopping? [y/n]"
+  # response = gets
+  # if response == /^[yY]/
+  #   "Clerk: Ok, have a great day!\nYou decided to return to your base camp."
+  #   home
+  # else
+  #   market
+  # end
 
 end
 
