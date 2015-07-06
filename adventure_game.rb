@@ -119,6 +119,10 @@ def fight_screen
   puts "+------------------+"
 end
 
+def fight_attack_monster
+
+end
+
 def fight_attack
   # Get Strength & Defense of Hero
   # Get Strength of Monster
@@ -128,13 +132,19 @@ def fight_attack
     puts "You attacked the monster!"
   end
 
-  damage = rand(5.0) * $name.strength
+  # TODO: either add damage or strength boosters for inventory weapons
+  damage = rand(10) + $name.strength * -1
+  $current_monster.edit_hp(damage)
+  puts "You inflicted #{damage * -1} damage!"
+  # for debugging
+  puts "The monster has " + $current_monster.hp.to_s + " HP left."
+  puts " "
 
-
-
-  
+  fight_attack_monster
 
 end
+
+
 
 def fight(monster)
   fight_screen_shown = false
