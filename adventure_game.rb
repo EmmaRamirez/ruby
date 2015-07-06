@@ -89,7 +89,7 @@ def ask_for_caste
       $name.set_class('Warrior')
       puts "Oh, a warrior! So you must really like strength."
       ensure_caste
-      $name.edit_powers(5, (-3), 0)
+      $name.edit_powers(3, (-5), 0)
     else
       reminder
       ask_for_caste
