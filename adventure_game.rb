@@ -10,7 +10,7 @@ $seed = rand(3)
 # game intro screen
 load_game_intro
 
-puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?"
+puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?\n"
 
 def reminder
   puts "Sorry, I didn't quite catch that. Only enter a number."
@@ -90,6 +90,11 @@ def summon_monster(area)
   end
 end
 
+def fight_decision
+  puts "What will you do?"
+  puts "[1] Fight [2] Flee [3] Bribe"
+end
+
 def explore
   puts "What will you do first?"
   puts "[1] Explore Forest\n[2] Explore Desert\n[3] Explore Plains"
@@ -108,7 +113,7 @@ def explore
     explore
   end
   puts "While exploring the " + current_exploration + ", you run into a #{summon_monster(current_exploration)}!!"
-
+  fight_decision
 end
 
 explore
