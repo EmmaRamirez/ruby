@@ -117,6 +117,7 @@ def fight_decision
   elsif fight_response == 2
     puts "You decided to flee!"
   elsif fight_response == 3
+
     puts "You offer the #{$current_monster} a bribe."
 
   end
@@ -139,7 +140,9 @@ def explore
     reminder
     explore
   end
-  puts "While exploring the " + current_exploration + ", you run into a #{summon_monster(current_exploration)}!!"
+  $current_monster = summon_monster(current_exploration)
+  puts "While exploring the " + current_exploration + ", you run into a #{$current_monster}!!"
+
   fight_decision
 end
 
