@@ -57,6 +57,10 @@ class Hero
     return @level
   end
 
+  def defense
+    return @defense
+  end
+
   def edit_gems(amount)
     @gems += amount
   end
