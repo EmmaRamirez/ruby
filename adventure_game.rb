@@ -95,9 +95,11 @@ def summon_monster(area)
     return forestMonsters[num]
   when 'desert'
     desertMonsters = ['Sand Snake', 'Jackal', 'Evil Kangaroo']
+    $current_monster = desertMonsters[num]
     return desertMonsters[num]
   when 'plains'
     plainsMonsters = ['Imp', 'Imp', 'Impster']
+    $current_monster = plainsMonsters[num]
     return plainsMonsters[num]
   end
 end
