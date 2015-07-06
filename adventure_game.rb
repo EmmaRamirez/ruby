@@ -145,7 +145,7 @@ def calculate_bribe_cost
 end
 
 def game_over
-  load_file("data/adventure_1.txt")
+  load_file("data/adventure_2.txt")
 end
 
 def flee
@@ -158,18 +158,21 @@ def fight_screen
   puts "+------------------+"
 end
 
+def add_item(item)
+  $name.inventory_add(item.to_s)
+  puts "You acquired a #{item.downcase}!"
+end
+
 def fight_spoils
   # 20% chance of receiving item after battle
   num = rand(5)
 
-  if num = 1
-    puts "In the rubble of the fight, you found..."
+  if num == 1
+    puts "In the rubble of the fight..."
     if ($current_monster.species == "Imp")
-      $name.inventory_add("Tiny Sword")
-      puts "A tiny sword!"
+      add_item("tiny sword")
     else
-      $name.inventory_add("Tiny Sword")
-      puts "An Olixir Potion!"
+      add_item("olixir potion")
     end
   end
 end
@@ -188,6 +191,7 @@ def fight_attack_monster
   if $name.hp < 0
     puts "***********************\n   You lost all your health!  \n************************"
     game_over
+    return
   elsif $name.hp < 20
     puts "|| You have #{$name.hp + damage} HP left..."
     puts "|| Maybe you should flee.\n [1] Flee [2] Keep Fighting"
