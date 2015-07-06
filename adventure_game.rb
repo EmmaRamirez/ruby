@@ -7,6 +7,7 @@ require_relative 'ag_monster.rb'
 
 current_exploration = ''
 explore_choice = ''
+num_of_turns = 1
 $seed = rand(3)
 $current_monster = ''
 $areas_unlocked = ['forest', 'desert', 'plains']
@@ -329,7 +330,7 @@ explore
 
 def home
   puts "You decided to settle down for a bit."
-  num_of_turns = 1
+  num_of_turns += 1
   allow_sleep = false
   if num_of_turns == 1
     puts "The day is young. The sun sings. There is still morning dew."
