@@ -23,6 +23,15 @@ class Hero
     @hp += amount
   end
 
+  def set_hp(amount)
+    @hp = amount
+  end
+
+  # FIXME: AWKWARD
+  def name
+    return @name
+  end
+
   def inventory_add(item)
     @inventory = @inventory.push(item)
   end

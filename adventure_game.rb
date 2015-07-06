@@ -33,7 +33,21 @@ def reminder
   puts "Sorry, I didn't quite catch that. Only enter a number."
 end
 
+def check_status
+  $name.status
+end
 
+def sleep
+  $name.set_hp(100)
+  puts "#{$name.name} went to sleep for one helluva long time."
+  enter
+  puts "#{$name.name} became fully healed!"
+end
+
+def rest
+  $name.edit_hp(33)
+  puts "#{$name.name} recovered 33 HP! Feeling so refreshed!"
+end
 
 def are_you_sure?
   while true
@@ -98,19 +112,7 @@ end
 get_name
 ask_for_caste
 
-def home_options
-  num_of_turns = 1
-  if num_of_turns == 1
-    puts "The day is young. The sun sings. There is still morning dew."
-  elsif num_of_turns == 2
-    puts "The noon is now. Birds sing cheerful tunes."
-  elsif num_of_turns == 3
-    puts "The sun is setting. A truly gorgeous horizon."
-  elsif num_of_turns == 4
-    puts "The night has set in. You should sleep for the night."
 
-      
-end
 
 
 
@@ -158,9 +160,17 @@ end
 def fight_spoils
   # 20% chance of receiving item after battle
   num = rand(5)
-  $name.inventory_add("Penis Sword")
-  puts "Wow!"
-  puts $name.inventory.to_s
+
+  if num = 1
+    puts "In the rubble of the fight, you found..."
+    if ($current_monster.species == "Imp")
+      $name.inventory_add("Tiny Sword")
+      puts "A tiny sword!"
+    else
+      $name.inventory_add("Tiny Sword")
+      puts "A Olixir Potion!"
+    end
+  end
 end
 
 def fight_attack_monster
@@ -180,12 +190,14 @@ def fight_attack_monster
   elsif $name.hp < 20
     puts "|| You have #{$name.hp + damage} HP left..."
     puts "|| Maybe you should flee.\n [1] Flee [2] Keep Fighting"
-    answer = gets
+    answer = gets.to_i
     if answer == 1
       puts " "
       puts "You decided to flee!"
     elsif answer == 2
       fight_attack
+    else
+      # TODO: FIND SOMETHING TO PUT HERE
     end
   else
     puts "|| You have #{$name.hp + damage} HP left."
@@ -314,3 +326,44 @@ def explore
 end
 
 explore
+
+def home
+  puts "You decided to settle down for a bit."
+  num_of_turns = 1
+  allow_sleep = false
+  if num_of_turns == 1
+    puts "The day is young. The sun sings. There is still morning dew."
+  elsif num_of_turns == 2
+    puts "The noon is now. Birds sing cheerful tunes."
+  elsif num_of_turns == 3
+    puts "The sun is setting. A truly gorgeous horizon."
+    allow_sleep = true
+  elsif num_of_turns == 4
+    puts "The night has set in. You should sleep for the night."
+    allow_sleep = true
+  end
+  enter
+  puts "What will you do?"
+
+  if allow_sleep
+    puts "[1] Check Status [2] Explore [3] Sleep"
+  else
+    puts "[1] Check Status [2] Explore [3] Nap"
+  end
+
+  response = gets.to_i
+
+  if response == 1
+    check_status
+  elsif response == 2
+    explore
+  elsif response == 3
+    if allow_sleep
+      sleep
+    else
+      nap
+    end
+  end
+end
+
+home
