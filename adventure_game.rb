@@ -16,6 +16,19 @@ def reminder
   puts "Sorry, I didn't quite catch that. Only enter a number."
 end
 
+def are_you_sure?
+  while true
+    print "Are you sure? [y/n]: "
+    response = gets
+    case response
+    when /^[yY]/
+      return true
+    when /^[nN]/, /^$/
+      return false
+    end
+  end
+end
+
 def ask_for_name
   name = gets.chomp
   puts "Hmm... #{name}? What a strange name.\nWhat class do you belong to?"
@@ -45,6 +58,10 @@ def explore_message(place)
   puts "You decided to explore the " + place
 end
 
+def summon_monster(area)
+
+end
+
 
 def explore
   puts "What will you do first?"
@@ -64,6 +81,7 @@ def explore
     explore
   end
   puts "While exploring the " + current_exploration + ", you run into a !!!"
+  summon_monster(current_exploration)
 end
 
 explore
