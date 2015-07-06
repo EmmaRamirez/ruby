@@ -11,7 +11,7 @@ $num_of_turns = 0
 $seed = rand(3)
 $current_monster = ''
 $areas_unlocked = ['forest', 'desert', 'plains']
-$market_ul = true
+$market_ul = false
 
 # game intro screen
 load_file("data/adventure_1.txt")
@@ -246,10 +246,16 @@ def fight_attack
     puts "You gained #{exp_acquired.to_s} exp! [#{$name.exp.to_s} total]"
     # TODO: make check_exp function that calls the method
     $name.check_exp
+    enter
     puts "You picked up #{gems_acquired.to_s} gems!"
     puts "You now have a total of #{$name.access_gems.to_s} gems."
     fight_spoils
     enter
+    if $num_of_turns == 0
+      $market_ul = true
+      puts "New area [Market] unlocked! "
+      enter
+    end
   else
     fight_attack_monster
   end
@@ -320,15 +326,21 @@ def explore_if
 end
 
 def market
-  puts "Welcome to the market!"
+  puts "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
+  puts "|   Welcome to the market!   |"
+  puts "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
+  enter
+  puts "Clerk: How may I help you?"
+  puts "[1] Purchase [2] Sell"
+  response = gets.to_i
 end
 
 # HACK: This code is freaking atrocius
 # Must fix eventually.
 def explore
   puts "What will you do first?"
-  
-  if $market_ul
+
+  if $market_ul == true
     puts "[1] Explore Forest\n[2] Explore Desert\n[3] Explore Plains\n[4] Visit Market"
   else
     puts "[1] Explore Forest\n[2] Explore Desert\n[3] Explore Plains\n"
