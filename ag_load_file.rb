@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-def load_game_intro(file_name)
+def load_file(file_name)
   intro_file = File.open(file_name, "r")
   whole_file = ""
 

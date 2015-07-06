@@ -10,7 +10,7 @@ $current_monster = ''
 $areas_unlocked = ['forest', 'desert', 'plains']
 
 # game intro screen
-load_game_intro("data/adventure_1.txt")
+load_file("data/adventure_1.txt")
 
 puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?\n"
 
