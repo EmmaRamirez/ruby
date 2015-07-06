@@ -132,7 +132,7 @@ def fight_attack_monster
   if $name.hp < 0
     puts "***********************\n   You lost all your health!  \n************************"
     game_over
-  elsif $game.hp < 20
+  elsif $name.hp < 20
     puts "You have #{$name.hp} HP left..."
     puts "Maybe you should flee.\n [1] Flee [2] Keep Fighting"
     answer = gets
