@@ -3,6 +3,7 @@
 require_relative 'ag_load_file.rb'
 require_relative 'ag_hero.rb'
 require_relative 'ag_monster.rb'
+# require_relative 'ag_controls.rb'
 
 current_exploration = ''
 explore_choice = ''
@@ -15,21 +16,24 @@ load_file("data/adventure_1.txt")
 
 # puts "Hello there! Welcome to Rubydia, a magical world!\nTell me--what is your name?\n"
 
-# TODO: implement --h command at anytime
+# This function is used so that the user isn't overwhelmed with a giant
+# block of text all at once...usually!
+# might just be the most important method in the game
+def enter
+  enter = gets
+end
 
+# TODO: implement --h command at anytime
 def help
   load_file("data/adventure_3.txt")
+  enter
 end
 
 def reminder
   puts "Sorry, I didn't quite catch that. Only enter a number."
 end
 
-# This function is used so that the user isn't overwhelmed with a giant
-# block of text all at once...usually!
-def enter
-  enter = gets
-end
+
 
 def are_you_sure?
   while true
