@@ -208,13 +208,13 @@ def fight_attack_monster
     return
   elsif $name.hp < 20
     puts "|| You have #{$name.hp + damage} HP left..."
-    puts "|| Maybe you should flee.\n [1] Flee [2] Keep Fighting"
+    puts "|| Maybe you should flee.\n [1] Keep Fighting [2] Flee"
     answer = gets.to_i
-    if answer == 1
+    if answer == 2
+      fight_attack
+    elsif answer == 1
       puts " "
       puts "You decided to flee!"
-    elsif answer == 2
-      fight_attack
     else
       # TODO: FIND SOMETHING TO PUT HERE
     end
@@ -374,16 +374,19 @@ def market
   response = gets.to_i
   if response == 1
     puts "Clerk: Well here's what we have in-stock today..."
-    puts "[1] Turtle Armor -- 70 gems\n[2] Leek Sword -- 70gems\n[3] Arizona Tea -- 80gems"
+    puts "[1] Turtle Armor -- 50 gems\n[2] Leek Sword -- 70gems\n[3] Arizona Tea -- 80gems"
     response = gets.to_i
     if response == 1
       puts "A tiny, but useful shield in the design of a turtle. Helps take hits."
       ensure_purchase
-      transaction(10, "turtle armor")
+      transaction(50, "turtle armor")
     elsif response == 2
       puts "A sword, made out of a leek. Increases power against monsters."
+      ensure_purchase
+      transaction(70, "leek sword")
     elsif response == 3
       puts "A can of tea. Replenishes health during battle once."
+      transaction(80, "arizona tea")
     end
   elsif response == 2
     puts "Current function not available."
@@ -391,7 +394,14 @@ def market
     "Sorry, I didn't quite catch that..."
   end
 
-
+  puts "Are you done shopping? [y/n]"
+  response = gets
+  if response == /^[yY]/
+    "Clerk: Ok, have a great day!\nYou decided to return to your base camp."
+    home
+  else
+    market
+  end
 
 end
 
