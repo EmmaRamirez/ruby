@@ -45,9 +45,8 @@ class Hero
     return @level
   end
 
-  def edit_gems(add_amount, subtract_amount)
-    @gems += add_amount
-    @gems -= subtract_amount
+  def edit_gems(amount)
+    @gems += amount
   end
 
   def edit_powers(strength, magic, defense)
