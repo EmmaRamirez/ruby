@@ -235,10 +235,10 @@ def fight_attack
   if $current_monster.hp <= 0
     gems_acquired = $current_monster.strength * 2
     $name.edit_gems(gems_acquired)
-    exp_acquired = $current_monster.strength * 4.5
+    exp_acquired = $current_monster.strength * 5
     $name.edit_exp(exp_acquired)
     puts "Congratulations! You defeated the monster!!"
-    puts "You gained #{exp_acquired} exp! [#{$name.exp.to_s} total]"
+    puts "You gained #{exp_acquired.to_s} exp! [#{$name.exp.to_s} total]"
     # TODO: make check_exp function that calls the method
     $name.check_exp
     puts "You picked up #{gems_acquired.to_s} gems!"
