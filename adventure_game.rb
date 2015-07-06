@@ -101,7 +101,7 @@ def summon_monster(area)
   num = rand(3) - 1
   case area
   when 'forest'
-    forestMonsters = ['Imp', 'Beehive', 'Argos']
+    forestMonsters = ['Imp', 'Beehive', 'Mad Wombat']
     $current_monster = Monster.new(forestMonsters[num], 5)
     return forestMonsters[num]
   when 'desert'
@@ -185,12 +185,17 @@ def fight_attack
   # TODO: add critical hit ratio & implementation
   damage = (base_damage + rand(10) + $name.strength) * -1
   $current_monster.edit_hp(damage)
+
+  if $current_monster.hp < 0
+    $current_monster.set_hp(0)
+  end
+
   puts "You inflicted #{damage * -1} damage!"
   # for debugging
   puts "The #{$current_monster.species} has " + $current_monster.hp.to_s + " HP left."
   enter
 
-  if $current_monster.hp < 0
+  if $current_monster.hp <= 0
     puts "Congratulations! You defeated the monster!!"
     enter
   else
@@ -200,7 +205,8 @@ def fight_attack
 end
 
 
-
+# REVIEW: adding more prize money if the bribe was declined
+# or the Hero didn't have enough money
 def fight(monster)
   fight_screen_shown = false
   mon = monster
@@ -271,6 +277,7 @@ def explore
     reminder
     explore
   end
+  # TODO: Implement correct grammar for 'an' instead of 'a' Imp, etc
   $current_monster = Monster.new(summon_monster(current_exploration), 5)
   puts "While exploring the " + current_exploration + ", you run into a #{$current_monster.species}!!"
   enter
