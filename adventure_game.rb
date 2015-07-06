@@ -92,15 +92,15 @@ def summon_monster(area)
   case area
   when 'forest'
     forestMonsters = ['Imp', 'Beehive', 'Argos']
-    $current_monster = forestMonsters[num]
+    $current_monster = Monster.new(forestMonsters[num], 5)
     return forestMonsters[num]
   when 'desert'
     desertMonsters = ['Sand Snake', 'Jackal', 'Evil Kangaroo']
-    $current_monster = desertMonsters[num]
+    $current_monster = Monster.new(desertMonsters[num], 5)
     return desertMonsters[num]
   when 'plains'
     plainsMonsters = ['Imp', 'Imp', 'Impster']
-    $current_monster = plainsMonsters[num]
+    $current_monster = Monster.new(plainsMonsters[num], 5)
     return plainsMonsters[num]
   end
 end
@@ -119,14 +119,14 @@ def fight_decision
     puts "You decided to flee!"
   elsif fight_response == 3
 
-    puts "You offer the #{$current_monster} a bribe."
+    puts "You offer the #{$current_monster.species} a bribe."
     if (calculate_bribe_cost > $name.access_gems)
       puts "You don't have enought money!"
-      puts "The #{$current_monster} attacked!"
+      puts "The #{$current_monster.species} attacked!"
       fight
     else
       $name.edit_gems((calculate_bribe_cost * -1))
-      puts "Good thing you had the money!\nThe #{$current_monster} left in peace."
+      puts "Good thing you had the money!\nThe #{$current_monster.species} left in peace."
     end
   end
 end
@@ -148,8 +148,8 @@ def explore
     reminder
     explore
   end
-  $current_monster = summon_monster(current_exploration)
-  puts "While exploring the " + current_exploration + ", you run into a #{$current_monster}!!"
+  $current_monster = Monster.new(summon_monster(current_exploration), 5)
+  puts "While exploring the " + current_exploration + ", you run into a #{$current_monster.species}!!"
   fight_decision
 end
 
