@@ -19,11 +19,8 @@ class Hero
   end
 
   def edit_hp(amount)
-    if @hp >= 100
-      return
-    else
-      @hp += amount
-    end
+    # REVIEW: capping HP amount at 100
+    @hp += amount
   end
 
 
