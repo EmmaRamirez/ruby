@@ -113,6 +113,10 @@ def game_over
   load_file("data/adventure_1.txt")
 end
 
+def flee
+  puts "You decided to flee!"
+end
+
 def fight_screen
   puts "+------------------+"
   puts "|    F I G H T!    |"
@@ -120,11 +124,32 @@ def fight_screen
 end
 
 def fight_attack_monster
-  damage = $current_monster.strength + rand(3) * -1
+  damage = $current_monster.strength + rand(3) - ($name.defense / 2) * -1
 
   puts "The #{$current_monster.species} attacked back!"
   puts "It inflicted #{$name.strength} damage!"
-  puts "You have #{$name.hp} HP left."
+
+  if $name.hp < 0
+    puts "***********************\n   You lost all your health!  \n************************"
+    game_over
+  elsif $game.hp < 20
+    puts "You have #{$name.hp} HP left..."
+    puts "Maybe you should flee.\n [1] Flee [2] Keep Fighting"
+    answer = gets
+    if answer == 1
+      puts "You decided to flee!"
+    elsif answer == 2
+      fight_attack
+    else
+      # TODO: make method you idiot
+      "ERROR: NOT A VALID RESPONSE"
+    end
+  else
+    puts "You have #{$name.hp} HP left."
+    fight_attack
+  end
+
+
 
 end
 
