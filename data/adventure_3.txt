@@ -1,6 +1,6 @@
 ################################################
 
-      H       E        L     P
+           H       E        L     P
 
 
      $name.status - check Hero's status
