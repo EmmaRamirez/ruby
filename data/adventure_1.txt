@@ -8,7 +8,7 @@
 *                                       |___/                                  *
 *                                                                              *
 ********************************************************************************
-              This is the magical and vast land of Rubydia
+              This is the magical and vast land of Rubydia.
               On your arduous journey, you will use your many
               skills, items, and knowledge to navigate the unknown,
               defeat countless foes, write much clean code,
