@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative 'ag_load_game.rb'
+require_relative 'ag_load_file.rb'
 require_relative 'ag_hero.rb'
 
 current_exploration = ''
