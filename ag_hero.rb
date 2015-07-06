@@ -52,8 +52,12 @@ class Hero
     return @hp
   end
 
-  def raise_exp(amount)
+  def edit_exp(amount)
     @exp += exp
+  end
+
+  def exp
+    return @exp
   end
 
   def access_gems
@@ -82,7 +86,7 @@ class Hero
     # TODO: better equation for exp level up
     if @exp > (100 * @level)
       level_up
-      puts @name + " leveled up to level " + @level.to_s + "!"
+      puts "You leveled up to level " + @level.to_s + "!"
     end
   end
 
