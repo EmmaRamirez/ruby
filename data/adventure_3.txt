@@ -4,7 +4,8 @@
 
 
      $name.status - check Hero's status
-     explore - automatically explore an area
+          explore - automatically explore an area
+           Ctrl-C - exit the current game
 
 
 ###############################################
