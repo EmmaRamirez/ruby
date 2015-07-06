@@ -64,6 +64,10 @@ class Hero
     return @gems
   end
 
+  def gems
+    return @gems
+  end
+
   def access_level
     return @level
   end

@@ -64,6 +64,19 @@ def are_you_sure?
   end
 end
 
+def will_you_purchase_it?
+  while true
+    print "Will you purhcase it? [y/n]: "
+    response = gets
+    case response
+    when /^[yY]/
+      return true
+    when /^[nN]/, /^$/
+      return false
+    end
+  end
+end
+
 def get_name
   $name = gets.chomp
   puts "Hmm... #{$name}? What a strange name. Well, then let me ask you..."
@@ -325,14 +338,61 @@ def explore_if
   fight_decision
 end
 
-def market
+def transaction(price, item)
+  if price > $name.gems
+    puts "You can't afford this!"
+    return
+  else
+    $name.edit_gems((price * -1))
+    add_item(item)
+  end
+end
+
+def ensure_purchase
+  if will_you_purchase_it? == true
+    return
+  else
+    puts "Clerk: Oh, I'm sorry! I didn't mean to show you the wrong item!"
+  end
+end
+
+def market_banner
   puts "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
   puts "|   Welcome to the market!   |"
   puts "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
+end
+
+def market
+  seen_market = false
+  if seen_market == false
+    market_banner
+    seen_market = true
+  end
   enter
   puts "Clerk: How may I help you?"
   puts "[1] Purchase [2] Sell"
   response = gets.to_i
+  if response == 1
+    puts "Clerk: Well here's what we have in-stock today..."
+    puts "[1] Turtle Armor -- 70 gems\n[2] Leek Sword -- 70gems\n[3] Arizona Tea -- 80gems"
+    response = gets.to_i
+    if response == 1
+      puts "A tiny, but useful shield in the design of a turtle. Helps take hits."
+      ensure_purchase
+      transaction(10, "turtle armor")
+    elsif response == 2
+      puts "A sword, made out of a leek. Increases power against monsters."
+    elsif response == 3
+      puts "A can of tea. Replenishes health during battle once."
+    end
+  elsif response == 2
+    puts "Current function not available."
+  else
+    "Sorry, I didn't quite catch that..."
+  end
+
+
+
 end
 
 # HACK: This code is freaking atrocius
