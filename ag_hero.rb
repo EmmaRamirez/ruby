@@ -32,12 +32,18 @@ class Hero
     @exp += exp
   end
 
+  def check_exp
+    if @exp > 100
+      level_up
+      puts @name + " leveled up to level " + @level.to_s + "!"
+  end
+
   def status
     puts "+---- STATUS -----+"
     puts "  Name: " + @name
     puts "  HP: " + @hp.to_s + " / 100"
     puts "  Class: " + @hero_class
-    puts "  Level: " + @level.to_s + " [" + @exp.to_s + "]"
+    puts "  Level: " + @level.to_s + " [" + @exp.to_s + " exp]"
     puts "+---- STATUS -----+"
   end
 end
