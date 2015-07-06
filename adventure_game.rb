@@ -47,7 +47,7 @@ end
 
 def nap
   $name.edit_hp(33)
-  puts "#{$name.name} recovered 33 HP! Feeling so refreshed!"
+  puts "#{$name.name} took a nap and recovered 33 HP! Feeling so refreshed!"
 end
 
 def are_you_sure?
