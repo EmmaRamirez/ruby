@@ -213,10 +213,13 @@ def fight(monster)
   puts "[1] Attack [2] Use Spell"
   offense_choice = gets.to_i
 
+  # REVIEW: making this o_c != 2 instead
   if offense_choice == 1
     fight_attack
   elsif offense_choice == 2
     fight_spell
+  else
+    fight_attack
   end
 
 
@@ -244,6 +247,9 @@ def fight_decision
       $name.edit_gems((calculate_bribe_cost * -1))
       puts "Good thing you had the money!\nThe #{$current_monster.species} left in peace."
     end
+  else
+    puts "Sorry, I didn't quite catch that..."
+    fight_decision
   end
 end
 
