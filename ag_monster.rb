@@ -16,4 +16,12 @@ class Monster
     return @strength
   end
 
+  def hp
+    return @hp
+  end
+
+  def edit_hp(amount)
+    @hp += amount
+  end
+
 end
