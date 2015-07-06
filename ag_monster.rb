@@ -2,7 +2,7 @@
 
 class Monster
   # REVIEW: adding new traits like kindness, speed
-  def initialize(@species, @strength)
+  def initialize(species, strength)
     @species = species
     @strength = strength
   end
