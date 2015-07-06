@@ -119,6 +119,23 @@ def fight_screen
   puts "+------------------+"
 end
 
+def fight_attack
+  # Get Strength & Defense of Hero
+  # Get Strength of Monster
+  if $name.inventory.length > 0
+    puts "You attacked the monster with your " + $name.inventory[0].to_s
+  else
+    puts "You attacked the monster!"
+  end
+
+  damage = rand(5.0) * $name.strength
+
+
+
+  
+
+end
+
 def fight(monster)
   fight_screen_shown = false
   mon = monster
@@ -139,6 +156,8 @@ def fight(monster)
 
 
 end
+
+
 
 def fight_decision
   puts "What will you do?"
