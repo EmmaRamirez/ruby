@@ -125,7 +125,7 @@ def summon_monster(area)
   num = rand(3) - 1
   case area
   when 'forest'
-    forestMonsters = ['Imp', 'Beehive', 'Mad Wombat']
+    forestMonsters = ['Imp', 'Sentient Beehive', 'Mad Wombat']
     $current_monster = Monster.new(forestMonsters[num], 5)
     return forestMonsters[num]
   when 'desert'
@@ -168,7 +168,7 @@ def fight_spoils
       puts "A tiny sword!"
     else
       $name.inventory_add("Tiny Sword")
-      puts "A Olixir Potion!"
+      puts "An Olixir Potion!"
     end
   end
 end
@@ -346,9 +346,9 @@ def home
   puts "What will you do?"
 
   if allow_sleep
-    puts "[1] Check Status [2] Explore [3] Sleep"
+    puts "[1] Check Status [2] Explore [3] Sleep [4] Help"
   else
-    puts "[1] Check Status [2] Explore [3] Nap"
+    puts "[1] Check Status [2] Explore [3] Nap [4] Help"
   end
 
   response = gets.to_i
@@ -363,7 +363,12 @@ def home
     else
       nap
     end
+  elsif response == 4
+    help
   end
+
+  home
+
 end
 
 home
