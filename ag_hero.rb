@@ -36,6 +36,7 @@ class Hero
     if @exp > 100
       level_up
       puts @name + " leveled up to level " + @level.to_s + "!"
+    end
   end
 
   def status
