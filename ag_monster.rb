@@ -5,6 +5,7 @@ class Monster
   def initialize(species, strength)
     @species = species
     @strength = strength
+    @hp = 100
   end
 
   def species

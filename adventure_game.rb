@@ -109,12 +109,21 @@ def calculate_bribe_cost
   $name.access_level * 100
 end
 
+def fight(monster)
+  puts "+------------------+"
+  puts "|    F I G H T!    |"
+  puts "+------------------+"
+  mon = monster
+
+
+end
+
 def fight_decision
   puts "What will you do?"
   puts "[1] Fight [2] Flee [3] Bribe"
   fight_response = gets.to_i
   if fight_response == 1
-    fight
+    fight($current_monster)
   elsif fight_response == 2
     puts "You decided to flee!"
   elsif fight_response == 3
@@ -123,7 +132,7 @@ def fight_decision
     if (calculate_bribe_cost > $name.access_gems)
       puts "You don't have enought money!"
       puts "The #{$current_monster.species} attacked!"
-      fight
+      fight($current_monster)
     else
       $name.edit_gems((calculate_bribe_cost * -1))
       puts "Good thing you had the money!\nThe #{$current_monster.species} left in peace."
