@@ -130,10 +130,12 @@ def fight_screen
 end
 
 def fight_attack_monster
+  base_damage = 5
   monster_strength_mod = 0
   hero_defense_mod = 0
+  hero_defense_divsion_mod = 3
 
-  damage = $current_monster.strength + rand(3) - ($name.defense / 2) * -1
+  damage = (base_damage + $current_monster.strength + rand(5) - ($name.defense / hero_defense_divsion_mod)) * -1
   $name.edit_hp(damage)
   puts "The #{$current_monster.species} attacked back!"
   puts "It inflicted #{damage * -1} damage!"
@@ -154,7 +156,7 @@ def fight_attack_monster
       "ERROR: NOT A VALID RESPONSE"
     end
   else
-    puts "You have #{$name.hp} HP left."
+    puts "You have #{$name.hp + damage} HP left."
     fight_attack
   end
 
@@ -175,7 +177,7 @@ def fight_attack
 
   # TODO: either add damage or strength boosters for inventory weapons
   # TODO: add critical hit ratio & implementation
-  damage = base_damage + rand(10) + $name.strength * -1
+  damage = (base_damage + rand(10) + $name.strength) * -1
   $current_monster.edit_hp(damage)
   puts "You inflicted #{damage * -1} damage!"
   # for debugging
