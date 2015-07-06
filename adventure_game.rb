@@ -119,7 +119,14 @@ def fight_decision
   elsif fight_response == 3
 
     puts "You offer the #{$current_monster} a bribe."
-
+    if (calculate_bribe_cost > $name.access_gems)
+      puts "You don't have enought money!"
+      puts "The #{$current_monster} attacked!"
+      fight
+    else
+      $name.edit_gems((calculate_bribe_cost * -1))
+      puts "Good thing you had the money!\nThe #{$current_monster} left in peace."
+    end
   end
 end
 
@@ -142,7 +149,6 @@ def explore
   end
   $current_monster = summon_monster(current_exploration)
   puts "While exploring the " + current_exploration + ", you run into a #{$current_monster}!!"
-
   fight_decision
 end
 
