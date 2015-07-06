@@ -6,6 +6,7 @@ require_relative 'ag_hero.rb'
 current_exploration = ''
 explore_choice = ''
 $seed = rand(3)
+$current_monster = ''
 
 # game intro screen
 load_game_intro
@@ -18,7 +19,7 @@ end
 
 def are_you_sure?
   while true
-    print "Are you sure? [y/n]: "
+    print "Correct? [y/n]: "
     response = gets
     case response
     when /^[yY]/
@@ -31,7 +32,7 @@ end
 
 def get_name
   $name = gets.chomp
-  puts "Hmm... #{$name}? What a strange name."
+  puts "Hmm... #{$name}? What a strange name. Well, then let me ask you..."
 end
 
 def ask_for_caste
@@ -39,18 +40,18 @@ def ask_for_caste
   puts "[1] Mage [2] Knight [3] Warrior"
   hero_class = gets.to_i
   if ($name != nil)
-    $name = Hero.new($name, 100, 0, 1, '')
+    $name = Hero.new($name, 100, 0, 1, '', [], 50, 10, 10, 10)
     if (hero_class == 1)
       $name.set_class('Mage')
-      puts "Oh, a mage! So you must really like magic, correct?"
+      puts "Oh, a mage! So you must really like magic."
       ensure_caste
     elsif (hero_class == 2)
       $name.set_class('Knight')
-      puts "Oh, a mage! So you must really like defense, correct?"
+      puts "Oh, a knight! So you must really like defense."
       ensure_caste
     elsif (hero_class == 3)
       $name.set_class('Warrior')
-      puts "Oh, a mage! So you must really like strength, correct?"
+      puts "Oh, a warrior! So you must really like strength."
       ensure_caste
     else
       reminder
@@ -82,17 +83,37 @@ def explore_message(place)
 end
 
 def summon_monster(area)
+  num = rand(3) - 1
   case area
   when 'forest'
-    num = rand(3) - 1
     forestMonsters = ['Imp', 'Beehive', 'Argos']
+    $current_monster = forestMonsters[num]
     return forestMonsters[num]
+  when 'desert'
+    desertMonsters = ['Sand Snake', 'Jackal', 'Evil Kangaroo']
+    return desertMonsters[num]
+  when 'plains'
+    plainsMonsters = ['Imp', 'Imp', 'Impster']
+    return plainsMonsters[num]
   end
+end
+
+def calculate_bribe_cost
+  $name.access_level * 100
 end
 
 def fight_decision
   puts "What will you do?"
   puts "[1] Fight [2] Flee [3] Bribe"
+  fight_response = gets.to_i
+  if fight_response == 1
+    fight
+  elsif fight_response == 2
+    puts "You decided to flee!"
+  elsif fight_response == 3
+    puts "You offer the #{$current_monster} a bribe."
+
+  end
 end
 
 def explore
@@ -112,7 +133,7 @@ def explore
     reminder
     explore
   end
-  puts "While exploring the " + current_exploration + ", you run into a #{summon_monster(current_exploration)}!!"
+  puts "While exploring the " + current_exploration + ", you run into a #{$current_monster}!!"
   fight_decision
 end
 

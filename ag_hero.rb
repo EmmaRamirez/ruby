@@ -1,12 +1,17 @@
 #!/usr/bin/env ruby
 
 class Hero
-  def initialize(name, hp, exp, level, hero_class)
+  def initialize(name, hp, exp, level, hero_class, inventory, gems, strength, magic, defense)
     @name = name
     @hp = hp
     @exp = exp
     @level = level
     @hero_class = hero_class
+    @inventory = inventory
+    @gems = gems
+    @strength = strength
+    @magic = magic
+    @defense = defense
   end
 
   def set_class(hero_class)
@@ -32,19 +37,40 @@ class Hero
     @exp += exp
   end
 
+  def access_gems
+    return @gems
+  end
+
+  def access_level
+    return @level
+  end
+
+  def edit_gems(add_amount, subtract_amount)
+    @gems += add_amount
+    @gems -= subtract_amount
+  end
+
+
+
   def check_exp
-    if @exp > 100
+    # TODO: better equation for exp level up
+    if @exp > (100 * @level)
       level_up
       puts @name + " leveled up to level " + @level.to_s + "!"
     end
   end
 
   def status
-    puts "+---- STATUS -----+"
+    puts "\n+---- STATUS -----+"
     puts "  Name: " + @name
     puts "  HP: " + @hp.to_s + " / 100"
     puts "  Class: " + @hero_class
     puts "  Level: " + @level.to_s + " [" + @exp.to_s + " exp]"
-    puts "+---- STATUS -----+"
+    puts "  Inventory: " + (@inventory != [] ? "no items" : @inventory.to_s)
+    puts "  Gems: " + @gems.to_s + " gems"
+    puts "  Strength: " + @strength.to_s
+    puts "  Magic: " + @magic.to_s
+    puts "  Defense: " + @defense.to_s
+    puts "+---- STATUS -----+\n"
   end
 end
