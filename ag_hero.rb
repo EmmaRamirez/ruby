@@ -23,6 +23,9 @@ class Hero
     @hp += amount
   end
 
+  def inventory_add(item)
+    @inventory = @inventory.push(item)
+  end
 
   def level_up
     @level += 1

@@ -143,6 +143,10 @@ def fight_screen
   puts "+------------------+"
 end
 
+def fight_spoils
+
+end
+
 def fight_attack_monster
   base_damage = 5
   monster_strength_mod = 0
@@ -175,9 +179,6 @@ def fight_attack_monster
     enter
     fight_attack
   end
-
-
-
 end
 
 def fight_attack
@@ -206,7 +207,14 @@ def fight_attack
   enter
 
   if $current_monster.hp <= 0
+    gems_acquired = $current_monster.strength * 2
+    $name.edit_gems(gems_acquired)
     puts "Congratulations! You defeated the monster!!"
+    puts "You picked up #{gems_acquired.to_s} gems!"
+    puts "You now have a total of #{$name.access_gems.to_s} gems."
+
+
+
     enter
   else
     fight_attack_monster
