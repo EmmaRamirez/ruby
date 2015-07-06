@@ -41,6 +41,7 @@ end
 def get_name
   $name = gets.chomp
   puts "Hmm... #{$name}? What a strange name. Well, then let me ask you..."
+  enter
 end
 
 def ask_for_caste
@@ -70,7 +71,9 @@ def ask_for_caste
     end
   end
   puts "Beginning adventure..."
+  enter
   $name.status
+  enter
 end
 
 def ensure_caste
@@ -91,6 +94,7 @@ ask_for_caste
 
 def explore_message(place)
   puts "You decide to explore the " + place + "..."
+  enter
 end
 
 def summon_monster(area)
@@ -137,17 +141,18 @@ def fight_attack_monster
 
   damage = (base_damage + $current_monster.strength + rand(5) - ($name.defense / hero_defense_divsion_mod)) * -1
   $name.edit_hp(damage)
-  puts "The #{$current_monster.species} attacked back!"
-  puts "It inflicted #{damage * -1} damage!"
+  puts "|| The #{$current_monster.species} attacked back!"
+  puts "|| It inflicted #{damage * -1} damage!"
 
   if $name.hp < 0
     puts "***********************\n   You lost all your health!  \n************************"
     game_over
   elsif $name.hp < 20
-    puts "You have #{$name.hp + damage} HP left..."
-    puts "Maybe you should flee.\n [1] Flee [2] Keep Fighting"
+    puts "|| You have #{$name.hp + damage} HP left..."
+    puts "|| Maybe you should flee.\n [1] Flee [2] Keep Fighting"
     answer = gets
     if answer == 1
+      puts " "
       puts "You decided to flee!"
     elsif answer == 2
       fight_attack
@@ -156,7 +161,8 @@ def fight_attack_monster
       "ERROR: NOT A VALID RESPONSE"
     end
   else
-    puts "You have #{$name.hp + damage} HP left."
+    puts "|| You have #{$name.hp + damage} HP left."
+    enter
     fight_attack
   end
 
@@ -182,10 +188,11 @@ def fight_attack
   puts "You inflicted #{damage * -1} damage!"
   # for debugging
   puts "The #{$current_monster.species} has " + $current_monster.hp.to_s + " HP left."
-  puts " "
+  enter
 
   if $current_monster.hp < 0
     puts "Congratulations! You defeated the monster!!"
+    enter
   else
     fight_attack_monster
   end
@@ -259,6 +266,7 @@ def explore
   end
   $current_monster = Monster.new(summon_monster(current_exploration), 5)
   puts "While exploring the " + current_exploration + ", you run into a #{$current_monster.species}!!"
+  enter
   fight_decision
 end
 
