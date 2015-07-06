@@ -75,6 +75,7 @@ class Hero
     puts "  Strength: " + @strength.to_s
     puts "  Magic: " + @magic.to_s
     puts "  Defense: " + @defense.to_s
-    puts "+---- STATUS -----+\n"
+    puts "+---- STATUS -----+"
+    puts " "
   end
 end
