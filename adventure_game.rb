@@ -117,13 +117,15 @@ end
 
 def fight(monster)
   fight_screen_shown = false
-  if fight_screen_shown = false
-    fight_screen
-  end
   mon = monster
 
+  if fight_screen_shown = true
+    fight_screen
+  end
 
-  fight_screen_shown = true
+  
+
+
 end
 
 def fight_decision
