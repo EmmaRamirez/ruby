@@ -5,7 +5,7 @@ require_relative 'ag_hero.rb'
 
 current_exploration = ''
 explore_choice = ''
-
+$seed = rand(3)
 
 # game intro screen
 load_game_intro
@@ -89,7 +89,6 @@ def summon_monster(area)
     return forestMonsters[num]
   end
 end
-
 
 def explore
   puts "What will you do first?"
