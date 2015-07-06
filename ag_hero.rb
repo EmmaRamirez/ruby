@@ -18,16 +18,14 @@ class Hero
     @hero_class = hero_class
   end
 
-
-  def lower_hp(amount)
-    @hp -= amount
-  end
-
-  def raise_hp(amount)
-    if (@hp < 100)
+  def edit_hp(amount)
+    if @hp >= 100
+      return
+    else
       @hp += amount
     end
   end
+
 
   def level_up
     @level += 1
