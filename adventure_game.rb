@@ -2,6 +2,7 @@
 
 require_relative 'ag_load_file.rb'
 require_relative 'ag_hero.rb'
+require_relative 'ag_monster.rb'
 
 current_exploration = ''
 explore_choice = ''
