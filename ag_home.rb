@@ -55,5 +55,4 @@ def home
     help
   end
   home
-
 end
