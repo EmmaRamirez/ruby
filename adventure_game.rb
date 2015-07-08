@@ -332,7 +332,7 @@ def fight_decision
 end
 
 def explore_if
-  $current_monster = Monster.new(summon_monster(current_exploration), 5)
+  $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
   puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
   enter
   fight_decision
@@ -421,21 +421,21 @@ def explore
   if (explore_choice == 1)
     current_exploration = 'forest'
     explore_message('forest')
-    $current_monster = Monster.new(summon_monster(current_exploration), 5)
+    $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
     puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
     enter
     fight_decision
   elsif (explore_choice == 2)
     current_exploration = 'desert'
     explore_message('desert')
-    $current_monster = Monster.new(summon_monster(current_exploration), 5)
+    $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
     puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
     enter
     fight_decision
   elsif (explore_choice == 3)
     current_exploration = 'plains'
     explore_message('plains')
-    $current_monster = Monster.new(summon_monster(current_exploration), 5)
+    $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
     puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
     enter
     fight_decision
@@ -455,14 +455,15 @@ def home
   puts "You decided to settle down for a bit."
   $num_of_turns += 1
   allow_sleep = false
-  if $num_of_turns == 1
+  if $num_of_turns == 1 or $num_of_turns % 5 == 0
     puts "The day is young. The sun sings. There is still morning dew."
+    # FIXME: The fact divisibility isn't the most effective tool at this
   elsif $num_of_turns == 2
     puts "The noon is now. Birds sing cheerful tunes."
-  elsif $num_of_turns == 3
+  elsif $num_of_turns == 3 or $num_of_turns % 3 == 0
     puts "The sun is setting. A truly gorgeous horizon."
     allow_sleep = true
-  elsif $num_of_turns == 4
+  elsif $num_of_turns == 4 or $num_of_turns %4 == 0
     puts "The night has set in. You should sleep for the night."
     allow_sleep = true
   end
