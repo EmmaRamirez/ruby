@@ -13,6 +13,7 @@ $seed = rand(3)
 $current_monster = ''
 $areas_unlocked = ['forest', 'desert', 'plains']
 $market_ul = false
+$hero = ''
 
 # game intro screen
 load_file("data/adventure_1.txt")
@@ -34,23 +35,23 @@ def help
 end
 
 def reminder
-  puts "Sorry, I didn't quite catch that. Only enter a number."
+  puts "Sorry, I didn't quite catch that... Please re-enter"
 end
 
 def check_status
-  $name.status
+  $hero.status
 end
 
 def sleep
-  $name.set_hp(100)
-  puts "#{$name.name} went to sleep for one helluva long time."
+  $hero.set_hp(100)
+  puts "#{$hero.name} went to sleep for one helluva long time."
   enter
-  puts "#{$name.name} became fully healed!"
+  puts "#{$hero.name} became fully healed!"
 end
 
 def nap
-  $name.edit_hp(33)
-  puts "#{$name.name} took a nap and recovered 33 HP! Feeling so refreshed!"
+  $hero.edit_hp(33)
+  puts "#{$hero.name} took a nap and recovered 33 HP! Feeling so refreshed!"
 end
 
 def are_you_sure?
@@ -80,8 +81,8 @@ def will_you_purchase_it?
 end
 
 def get_name
-  $name = gets.chomp
-  puts "Hmm... #{$name}? What a strange name. Well, then let me ask you..."
+  $hero_name = gets.chomp
+  puts "Hmm... #{$hero_name}? What a strange name. Well, then let me ask you..."
   enter
 end
 
@@ -89,23 +90,23 @@ def ask_for_caste
   puts "What class do you belong to?"
   puts "[1] Mage [2] Knight [3] Warrior"
   hero_class = gets.to_i
-  if ($name != nil)
-    $name = Hero.new($name, 100, 0, 1, '', [], 50, 10, 10, 10)
+  if ($hero_name != nil)
+    $hero = Hero.new($hero_name, 100, 0, 1, '', [], 50, 10, 10, 10)
     if (hero_class == 1)
-      $name.set_class('Mage')
+      $hero.set_class('Mage')
       puts "Oh, a mage! So you must really like magic."
       ensure_caste
-      $name.edit_powers((-3), 5, 0)
+      $hero.edit_powers((-3), 5, 0)
     elsif (hero_class == 2)
-      $name.set_class('Knight')
+      $hero.set_class('Knight')
       puts "Oh, a knight! So you must really like defense."
       ensure_caste
-      $name.edit_powers((-3), 0, 5)
+      $hero.edit_powers((-3), 0, 5)
     elsif (hero_class == 3)
-      $name.set_class('Warrior')
+      $hero.set_class('Warrior')
       puts "Oh, a warrior! So you must really like strength."
       ensure_caste
-      $name.edit_powers(3, (-5), 0)
+      $hero.edit_powers(3, (-5), 0)
     else
       reminder
       ask_for_caste
@@ -113,7 +114,7 @@ def ask_for_caste
   end
   puts "Beginning adventure..."
   enter
-  $name.status
+  $hero.status
   enter
 end
 
@@ -157,7 +158,7 @@ def summon_monster(area)
 end
 
 def calculate_bribe_cost
-  $name.access_level * 100
+  $hero.access_level * 100
 end
 
 def game_over
@@ -168,6 +169,10 @@ def flee
   puts "You decided to flee!"
 end
 
+def level_up
+
+end
+
 def fight_screen
   puts "+------------------+"
   puts "|    F I G H T!    |"
@@ -175,7 +180,7 @@ def fight_screen
 end
 
 def add_item(item)
-  $name.inventory_add(item.to_s)
+  $hero.inventory_add(item.to_s)
   puts "You acquired a #{item.downcase}!"
 end
 
@@ -199,17 +204,17 @@ def fight_attack_monster
   hero_defense_mod = 0
   hero_defense_divsion_mod = 3
 
-  damage = (base_damage + $current_monster.strength + rand(5) - ($name.defense / hero_defense_divsion_mod)) * -1
-  $name.edit_hp(damage)
+  damage = (base_damage + $current_monster.strength + rand(5) - ($hero.defense / hero_defense_divsion_mod)) * -1
+  $hero.edit_hp(damage)
   puts "|| The #{$current_monster.species} attacked back!"
   puts "|| It inflicted #{damage * -1} damage!"
 
-  if $name.hp < 0
+  if $hero.hp < 0
     puts "***********************\n   You lost all your health!  \n************************"
     game_over
     return
-  elsif $name.hp < 20
-    puts "|| You have #{$name.hp + damage} HP left..."
+  elsif $hero.hp < 20
+    puts "|| You have #{$hero.hp + damage} HP left..."
     puts "|| Maybe you should flee.\n [1] Keep Fighting [2] Flee"
     answer = gets.to_i
     if answer == 2
@@ -221,7 +226,7 @@ def fight_attack_monster
       # TODO: FIND SOMETHING TO PUT HERE
     end
   else
-    puts "|| You have #{$name.hp + damage} HP left."
+    puts "|| You have #{$hero.hp + damage} HP left."
     enter
     fight_attack
   end
@@ -232,15 +237,15 @@ def fight_attack
   hero_strength_mod = 0
   # Get Strength & Defense of Hero
   # Get Strength of Monster
-  if $name.inventory.length > 0
-    puts "You attacked the monster with your " + $name.inventory[0].to_s
+  if $hero.inventory.length > 0
+    puts "You attacked the monster with your " + $hero.inventory[0].to_s
   else
     puts "You attacked the monster!"
   end
 
   # TODO: either add damage or strength boosters for inventory weapons
   # TODO: add critical hit ratio & implementation
-  damage = (base_damage + rand(10) + $name.strength) * -1
+  damage = (base_damage + rand(10) + $hero.strength) * -1
   $current_monster.edit_hp(damage)
 
   if $current_monster.hp < 0
@@ -255,16 +260,16 @@ def fight_attack
   if $current_monster.hp <= 0
     $num_mons_killed += 1
     gems_acquired = $current_monster.strength * 2
-    $name.edit_gems(gems_acquired)
+    $hero.edit_gems(gems_acquired)
     exp_acquired = $current_monster.strength * 5
-    $name.edit_exp(exp_acquired)
+    $hero.edit_exp(exp_acquired)
     puts "Congratulations! You defeated the monster!!"
-    puts "You gained #{exp_acquired.to_s} exp! [#{$name.exp.to_s} total]"
+    puts "You gained #{exp_acquired.to_s} exp! [#{$hero.exp.to_s} total]"
     # TODO: make check_exp function that calls the method
-    $name.check_exp
+    $hero.check_exp
     enter
     puts "You picked up #{gems_acquired.to_s} gems!"
-    puts "You now have a total of #{$name.access_gems.to_s} gems."
+    puts "You now have a total of #{$hero.access_gems.to_s} gems."
     fight_spoils
     enter
     if $num_mons_killed == 1
@@ -319,13 +324,13 @@ def fight_decision
   elsif fight_response == 3
 
     puts "You offer the #{$current_monster.species} a bribe."
-    if (calculate_bribe_cost > $name.access_gems)
+    if (calculate_bribe_cost > $hero.access_gems)
       puts "But you don't have enought money!"
       puts "The #{$current_monster.species} attacked!"
       enter
       fight($current_monster)
     else
-      $name.edit_gems((calculate_bribe_cost * -1))
+      $hero.edit_gems((calculate_bribe_cost * -1))
       puts "Good thing you had the money!\nThe #{$current_monster.species} left in peace."
     end
   else
@@ -342,11 +347,11 @@ def explore_if
 end
 
 def transaction(price, item)
-  if price > $name.gems
+  if price > $hero.gems
     puts "You can't afford this!"
     return
   else
-    $name.edit_gems((price * -1))
+    $hero.edit_gems((price * -1))
     add_item(item)
   end
 end
