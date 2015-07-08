@@ -4,6 +4,8 @@ require_relative 'ag_load_file.rb'
 require_relative 'ag_hero.rb'
 require_relative 'ag_monster.rb'
 require_relative 'ag_helper_functions.rb'
+require_relative 'ag_explore.rb'
+require_relative 'ag_home.rb'
 # require_relative 'ag_controls.rb'
 
 current_exploration = ''
@@ -26,17 +28,6 @@ load_file("data/adventure_1.txt")
 # might just be the most important method in the game
 
 
-def sleep
-  $hero.set_hp(100)
-  puts "#{$hero.name} went to sleep for one helluva long time."
-  enter
-  puts "#{$hero.name} became fully healed!"
-end
-
-def nap
-  $hero.edit_hp(33)
-  puts "#{$hero.name} took a nap and recovered 33 HP! Feeling so refreshed!"
-end
 
 def are_you_sure?
   while true
@@ -119,28 +110,7 @@ ask_for_caste
 
 
 
-def explore_message(place)
-  puts "You decide to explore the " + place + "..."
-  enter
-end
 
-def summon_monster(area)
-  num = rand(3) - 1
-  case area
-  when 'forest'
-    forestMonsters = ['Imp', 'Sentient Beehive', 'Mad Wombat']
-    $current_monster = Monster.new(forestMonsters[num], 5, 0, 0, 5, 0)
-    return forestMonsters[num]
-  when 'desert'
-    desertMonsters = ['Sand Snake', 'Jackal', 'Evil Kangaroo']
-    $current_monster = Monster.new(desertMonsters[num], 5, 0, 0, 5, 0)
-    return desertMonsters[num]
-  when 'plains'
-    plainsMonsters = ['Imp', 'Imp', 'Impster']
-    $current_monster = Monster.new(plainsMonsters[num], 5, 0, 0, 5, 0)
-    return plainsMonsters[num]
-  end
-end
 
 def calculate_bribe_cost
   $hero.access_level * 100
@@ -324,12 +294,7 @@ def fight_decision
   end
 end
 
-def explore_if
-  $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
-  puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
-  enter
-  fight_decision
-end
+
 
 def transaction(price, item)
   if price > $hero.gems
@@ -399,93 +364,8 @@ def market
 
 end
 
-# HACK: This code is freaking atrocius
-# Must fix eventually.
-def explore
-  puts "What will you do first?"
 
-  if $market_ul == true
-    puts "[1] Explore Forest\n[2] Explore Desert\n[3] Explore Plains\n[4] Visit Market"
-  else
-    puts "[1] Explore Forest\n[2] Explore Desert\n[3] Explore Plains\n"
-  end
-
-  explore_choice = gets.to_i
-  if (explore_choice == 1)
-    current_exploration = 'forest'
-    explore_message('forest')
-    $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
-    puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
-    enter
-    fight_decision
-  elsif (explore_choice == 2)
-    current_exploration = 'desert'
-    explore_message('desert')
-    $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
-    puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
-    enter
-    fight_decision
-  elsif (explore_choice == 3)
-    current_exploration = 'plains'
-    explore_message('plains')
-    $current_monster = Monster.new(summon_monster(current_exploration), 5, 0, 0, 5, 0)
-    puts "While exploring the " + current_exploration.to_s + ", you run into a #{$current_monster.species}!!"
-    enter
-    fight_decision
-  elsif (explore_choice == 4)
-    market
-  else
-    reminder
-    explore
-  end
-  # TODO: Implement correct grammar for 'an' instead of 'a' Imp, etc
-
-end
 
 explore
-
-def home
-  puts "You decided to settle down for a bit."
-  $num_of_turns += 1
-  allow_sleep = false
-  if $num_of_turns == 1 or $num_of_turns % 5 == 0
-    puts "The day is young. The sun sings. There is still morning dew."
-    # FIXME: The fact divisibility isn't the most effective tool at this
-  elsif $num_of_turns == 2
-    puts "The noon is now. Birds sing cheerful tunes."
-  elsif $num_of_turns == 3 or $num_of_turns % 3 == 0
-    puts "The sun is setting. A truly gorgeous horizon."
-    allow_sleep = true
-  elsif $num_of_turns == 4 or $num_of_turns %4 == 0
-    puts "The night has set in. You should sleep for the night."
-    allow_sleep = true
-  end
-  enter
-  puts "What will you do?"
-
-  if allow_sleep
-    puts "[1] Check Status [2] Explore [3] Sleep [4] Help"
-  else
-    puts "[1] Check Status [2] Explore [3] Nap [4] Help"
-  end
-
-  response = gets.to_i
-
-  if response == 1
-    check_status
-  elsif response == 2
-    explore
-  elsif response == 3
-    if allow_sleep
-      sleep
-    else
-      nap
-    end
-  elsif response == 4
-    help
-  end
-  home
-
-end
 
 home
