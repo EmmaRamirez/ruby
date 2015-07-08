@@ -8,6 +8,10 @@ def help
   enter
 end
 
+def game_over
+  load_file("data/adventure_2.txt")
+end
+
 def reminder
   puts "Sorry, I didn't quite catch that... Please re-enter"
 end
