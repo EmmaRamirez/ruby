@@ -12,6 +12,8 @@ class Monster
     @generosity = generosity
   end
 
+  attr_accessor :species, :strength, :defense, :magic, :greed, :generosity
+
   def species
     return @species
   end
