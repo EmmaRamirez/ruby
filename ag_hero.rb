@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
 class Hero
-  def initialize(name, hp, exp, level, caste, inventory, gems, strength, magic, defense)
+  def initialize(name, hp, maxhp, exp, level, caste, inventory, gems, strength, magic, defense)
     @name = name
     @hp = hp
+    @maxhp = maxhp
     @exp = exp
     @level = level
     @caste = caste
@@ -14,6 +15,8 @@ class Hero
     @defense = defense
   end
 
+  attr_accessor :maxhp, :exp, :level, :caste, :inventory, :gems, :strength, :magic, :defense
+
   def set_class(caste)
     @caste = caste
   end
@@ -21,6 +24,9 @@ class Hero
   def edit_hp(amount)
     # REVIEW: capping HP amount at 100
     @hp += amount
+    if @hp > @maxhp
+      @hp = @maxhp
+    end
   end
 
   def set_hp(amount)

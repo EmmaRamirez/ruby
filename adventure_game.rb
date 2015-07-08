@@ -3,6 +3,7 @@
 require_relative 'ag_load_file.rb'
 require_relative 'ag_hero.rb'
 require_relative 'ag_monster.rb'
+require_relative 'ag_helper_functions.rb'
 # require_relative 'ag_controls.rb'
 
 current_exploration = ''
@@ -23,10 +24,7 @@ load_file("data/adventure_1.txt")
 # This function is used so that the user isn't overwhelmed with a giant
 # block of text all at once...usually!
 # might just be the most important method in the game
-def enter
-  print "[Press Enter]\n"
-  enter = gets
-end
+
 
 # TODO: implement --h command at anytime
 def help
@@ -86,23 +84,24 @@ def get_name
   enter
 end
 
+
 def ask_for_caste
   puts "What class do you belong to?"
   puts "[1] Mage [2] Knight [3] Warrior"
   caste = gets.chomp.downcase
   if ($hero_name != nil)
-    $hero = Hero.new($hero_name, 100, 0, 1, '', [], 50, 10, 10, 10)
-    if (caste == 1 or caste == "Mage".downcase)
+    $hero = Hero.new($hero_name, 100, 100, 0, 1, '', [], 50, 10, 10, 10)
+    if (caste == "1" or caste == "Mage".downcase)
       $hero.set_class('Mage')
       puts "Oh, a mage! So you must really like magic."
       ensure_caste
       $hero.edit_powers((-3), 5, 0)
-    elsif (caste == 2 or caste == "Knight".downcase)
+    elsif (caste == "2" or caste == "Knight".downcase)
       $hero.set_class('Knight')
       puts "Oh, a knight! So you must really like defense."
       ensure_caste
       $hero.edit_powers((-3), 0, 5)
-    elsif (caste == 3 or caste == "Warrior".downcase)
+    elsif (caste == "3" or caste == "Warrior".downcase)
       $hero.set_class('Warrior')
       puts "Oh, a warrior! So you must really like strength."
       ensure_caste
