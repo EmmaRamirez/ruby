@@ -8,6 +8,7 @@ require_relative 'ag_monster.rb'
 current_exploration = ''
 explore_choice = ''
 $num_of_turns = 0
+$num_mons_killed = 0
 $seed = rand(3)
 $current_monster = ''
 $areas_unlocked = ['forest', 'desert', 'plains']
@@ -252,6 +253,7 @@ def fight_attack
   enter
 
   if $current_monster.hp <= 0
+    $num_mons_killed += 1
     gems_acquired = $current_monster.strength * 2
     $name.edit_gems(gems_acquired)
     exp_acquired = $current_monster.strength * 5
@@ -265,7 +267,7 @@ def fight_attack
     puts "You now have a total of #{$name.access_gems.to_s} gems."
     fight_spoils
     enter
-    if $num_of_turns == 0
+    if $num_mons_killed == 1
       $market_ul = true
       puts "New area [Market] unlocked! "
       enter
