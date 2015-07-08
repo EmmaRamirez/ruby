@@ -17,10 +17,6 @@ class Hero
 
   attr_accessor :maxhp, :exp, :level, :caste, :inventory, :gems, :strength, :magic, :defense
 
-  def set_class(caste)
-    @caste = caste
-  end
-
   def edit_hp(amount)
     # REVIEW: capping HP amount at 100
     @hp += amount
@@ -29,61 +25,12 @@ class Hero
     end
   end
 
-  def set_hp(amount)
-    @hp = amount
-  end
-
-  # FIXME: AWKWARD
-  def name
-    return @name
+  def full_heal(amount)
+    @hp = @maxhp
   end
 
   def inventory_add(item)
     @inventory = @inventory.push(item)
-  end
-
-  def level_up
-    @level += 1
-  end
-
-  def inventory
-    return @inventory
-  end
-
-  def strength
-    return @strength
-  end
-
-  def hp
-    return @hp
-  end
-
-  def edit_exp(amount)
-    @exp += amount
-  end
-
-  def exp
-    return @exp
-  end
-
-  def access_gems
-    return @gems
-  end
-
-  def gems
-    return @gems
-  end
-
-  def access_level
-    return @level
-  end
-
-  def defense
-    return @defense
-  end
-
-  def edit_gems(amount)
-    @gems += amount
   end
 
   def edit_powers(strength, magic, defense)
@@ -103,7 +50,7 @@ class Hero
   def status
     puts "\n+---- STATUS -----+"
     puts "  Name: " + @name
-    puts "  HP: " + @hp.to_s + " / 100"
+    puts "  HP: " + @hp.to_s + " / " + @maxhp.to_s
     puts "  Class: " + @caste
     puts "  Level: " + @level.to_s + " [" + @exp.to_s + " exp]"
     puts "  Inventory: " + (@inventory != [] ? @inventory.to_s : "no items")

@@ -9,4 +9,6 @@ class Item
     @cost = cost
   end
 
+  attr_accessor :name, :description, :use_outside, :use_once :cost
+
 end
