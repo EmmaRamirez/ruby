@@ -12,7 +12,7 @@ class Monster
     @generosity = generosity
   end
 
-  attr_accessor :species, :strength, :defense, :magic, :greed, :generosity
+  attr_accessor :species, :strength, :hp, :defense, :magic, :greed, :generosity
 
   def species
     return @species
@@ -26,12 +26,5 @@ class Monster
     return @hp
   end
 
-  def edit_hp(amount)
-    @hp += amount
-  end
-
-  def set_hp(amount)
-    @hp = amount
-  end
 
 end

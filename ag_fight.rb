@@ -1,5 +1,5 @@
 def calculate_bribe_cost
-  $hero.access_level * 100
+  ($hero.level * (35 + $current_monster.greed) - $current_monster.generosity)
 end
 
 def flee
@@ -7,7 +7,7 @@ def flee
 end
 
 def level_up
-
+  $hero.level += 1
 end
 
 def fight_screen
@@ -38,8 +38,8 @@ def fight_attack_monster
   hero_defense_mod = 0
   hero_defense_divsion_mod = 3
 
-  damage = (base_damage + $current_monster.strength + rand(5) - ($hero.defense / hero_defense_divsion_mod)) * -1
-  $hero.edit_hp(damage)
+  damage = (base_damage + $current_monster.strength + rand(5) - ($hero.defense / hero_defense_divsion_mod))
+  $hero.hp -= damage
   puts "|| The #{$current_monster.species} attacked back!"
   puts "|| It inflicted #{damage * -1} damage!"
 
@@ -48,7 +48,7 @@ def fight_attack_monster
     game_over
     return
   elsif $hero.hp < 20
-    puts "|| You have #{$hero.hp + damage} HP left..."
+    puts "|| You have #{$hero.hp - damage} HP left..."
     puts "|| Maybe you should flee.\n [1] Keep Fighting [2] Flee"
     answer = gets.to_i
     if answer == 2
@@ -60,7 +60,7 @@ def fight_attack_monster
       # TODO: FIND SOMETHING TO PUT HERE
     end
   else
-    puts "|| You have #{$hero.hp + damage} HP left."
+    puts "|| You have #{$hero.hp - damage} HP left."
     enter
     fight_attack
   end
@@ -79,11 +79,11 @@ def fight_attack
 
   # TODO: either add damage or strength boosters for inventory weapons
   # TODO: add critical hit ratio & implementation
-  damage = (base_damage + rand(10) + $hero.strength) * -1
-  $current_monster.edit_hp(damage)
+  damage = (base_damage + rand(10) + $hero.strength)
+  $current_monster.hp -= damage
 
   if $current_monster.hp < 0
-    $current_monster.set_hp(0)
+    $current_monster.hp = 0
   end
 
   puts "You inflicted #{damage * -1} damage!"
@@ -158,13 +158,13 @@ def fight_decision
   elsif fight_response == 3
 
     puts "You offer the #{$current_monster.species} a bribe."
-    if (calculate_bribe_cost > $hero.access_gems)
+    if (calculate_bribe_cost > $hero.gems)
       puts "But you don't have enought money!"
       puts "The #{$current_monster.species} attacked!"
       enter
       fight($current_monster)
     else
-      $hero.edit_gems((calculate_bribe_cost * -1))
+      $hero.gems -= calculate_bribe_cost
       puts "Good thing you had the money!\nThe #{$current_monster.species} left in peace."
     end
   else
