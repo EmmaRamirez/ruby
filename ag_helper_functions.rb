@@ -20,7 +20,7 @@ def check_status
   $hero.status
 end
 
-def begin
+def beginning
   puts "Beginning adventure..."
   enter
   check_status

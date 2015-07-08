@@ -53,7 +53,7 @@ def ask_for_caste
     reminder
     ask_for_caste
   end
-  begin
+  beginning
 end
 
 def ensure_caste
