@@ -89,20 +89,20 @@ end
 def ask_for_caste
   puts "What class do you belong to?"
   puts "[1] Mage [2] Knight [3] Warrior"
-  hero_class = gets.chomp.downcase
+  caste = gets.chomp.downcase
   if ($hero_name != nil)
     $hero = Hero.new($hero_name, 100, 0, 1, '', [], 50, 10, 10, 10)
-    if (hero_class == 1 or hero_class == "Mage".downcase)
+    if (caste == 1 or caste == "Mage".downcase)
       $hero.set_class('Mage')
       puts "Oh, a mage! So you must really like magic."
       ensure_caste
       $hero.edit_powers((-3), 5, 0)
-    elsif (hero_class == 2 or hero_class == "Knight".downcase)
+    elsif (caste == 2 or caste == "Knight".downcase)
       $hero.set_class('Knight')
       puts "Oh, a knight! So you must really like defense."
       ensure_caste
       $hero.edit_powers((-3), 0, 5)
-    elsif (hero_class == 3 or hero_class == "Warrior".downcase)
+    elsif (caste == 3 or caste == "Warrior".downcase)
       $hero.set_class('Warrior')
       puts "Oh, a warrior! So you must really like strength."
       ensure_caste

@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
 class Hero
-  def initialize(name, hp, exp, level, hero_class, inventory, gems, strength, magic, defense)
+  def initialize(name, hp, exp, level, caste, inventory, gems, strength, magic, defense)
     @name = name
     @hp = hp
     @exp = exp
     @level = level
-    @hero_class = hero_class
+    @caste = caste
     @inventory = inventory
     @gems = gems
     @strength = strength
@@ -14,8 +14,8 @@ class Hero
     @defense = defense
   end
 
-  def set_class(hero_class)
-    @hero_class = hero_class
+  def set_class(caste)
+    @caste = caste
   end
 
   def edit_hp(amount)
@@ -98,7 +98,7 @@ class Hero
     puts "\n+---- STATUS -----+"
     puts "  Name: " + @name
     puts "  HP: " + @hp.to_s + " / 100"
-    puts "  Class: " + @hero_class
+    puts "  Class: " + @caste
     puts "  Level: " + @level.to_s + " [" + @exp.to_s + " exp]"
     puts "  Inventory: " + (@inventory != [] ? @inventory.to_s : "no items")
     puts "  Gems: " + @gems.to_s + " gems"
