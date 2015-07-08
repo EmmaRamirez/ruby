@@ -141,15 +141,15 @@ def summon_monster(area)
   case area
   when 'forest'
     forestMonsters = ['Imp', 'Sentient Beehive', 'Mad Wombat']
-    $current_monster = Monster.new(forestMonsters[num], 5)
+    $current_monster = Monster.new(forestMonsters[num], 5, 0, 0, 5, 0)
     return forestMonsters[num]
   when 'desert'
     desertMonsters = ['Sand Snake', 'Jackal', 'Evil Kangaroo']
-    $current_monster = Monster.new(desertMonsters[num], 5)
+    $current_monster = Monster.new(desertMonsters[num], 5, 0, 0, 5, 0)
     return desertMonsters[num]
   when 'plains'
     plainsMonsters = ['Imp', 'Imp', 'Impster']
-    $current_monster = Monster.new(plainsMonsters[num], 5)
+    $current_monster = Monster.new(plainsMonsters[num], 5, 0, 0, 5, 0)
     return plainsMonsters[num]
   end
 end

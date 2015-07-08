@@ -2,10 +2,14 @@
 
 class Monster
   # REVIEW: adding new traits like kindness, speed
-  def initialize(species, strength)
+  def initialize(species, strength, defense, magic, greed, generosity)
     @species = species
     @strength = strength
     @hp = 100
+    @defense = defense
+    @magic = magic
+    @greed = greed
+    @generosity = generosity
   end
 
   def species
