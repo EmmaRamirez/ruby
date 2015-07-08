@@ -26,20 +26,6 @@ load_file("data/adventure_1.txt")
 # might just be the most important method in the game
 
 
-# TODO: implement --h command at anytime
-def help
-  load_file("data/adventure_3.txt")
-  enter
-end
-
-def reminder
-  puts "Sorry, I didn't quite catch that... Please re-enter"
-end
-
-def check_status
-  $hero.status
-end
-
 def sleep
   $hero.set_hp(100)
   puts "#{$hero.name} went to sleep for one helluva long time."
