@@ -24,7 +24,6 @@ def beginning
   puts "Beginning adventure..."
   enter
   check_status
-  enter
 end
 
 def are_you_sure?
