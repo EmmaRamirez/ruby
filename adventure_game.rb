@@ -22,6 +22,7 @@ load_file("data/adventure_1.txt")
 # block of text all at once...usually!
 # might just be the most important method in the game
 def enter
+  print "[Press Enter]\n"
   enter = gets
 end
 
