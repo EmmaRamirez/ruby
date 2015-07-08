@@ -25,7 +25,7 @@ class Hero
     end
   end
 
-  def full_heal(amount)
+  def full_heal
     @hp = @maxhp
   end
 
