@@ -1,0 +1,5 @@
+a = ["a", "b", "c"]
+a.map { |x| x + "!" } # ["a!", "b!" ..]
+a.collect { |x| x + "!" } # ["a!", "b!" ..]
+a.map.with_index { |x, i| x * i } # ["", "b", "cc", "dddd"]
+a # ["a", "b", "c"]
