@@ -4,6 +4,7 @@ require_relative 'helper_functions.rb'
 require_relative 'init_functions.rb'
 require_relative 'hero.rb'
 require_relative 'home.rb'
+require_relative 'explore.rb'
 
 $n_turns = 0
 $n_days = 0
