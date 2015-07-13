@@ -1,5 +1,5 @@
 def home
-  if $n_turns == 0
+  if $n_turns == 0 and $n_days == 0
     explore
   else
     puts "You decide to settle down for the time being. What will you do next?"
