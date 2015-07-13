@@ -26,6 +26,13 @@ def status
   enter
 end
 
+def calc_days
+  if $n_turns == 5
+    $n_days += 1
+    $n_turns = 0
+  end
+end
+
 def confirm_choice(flag)
   print " [y/n]: "
   response = gets
