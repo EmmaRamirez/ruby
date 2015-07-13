@@ -6,6 +6,24 @@ end
 def enter
   print " [enter] "
   gets
+  puts " "
+end
+
+def status
+  puts "+========== STATUS ==========+"
+  puts "   Name: #{$hero.name}"
+  puts "   HP: #{$hero.hp.to_s} / #{$hero.maxhp.to_s}"
+  puts "   Caste: #{$hero.caste}"
+  puts "   Magic: #{$hero.magic.to_s}"
+  puts "   Strength: #{$hero.strength.to_s}"
+  puts "   Defense: #{$hero.defense.to_s}"
+  puts "   Intelligence: #{$hero.intelligence.to_s}"
+  puts "   Speed: #{$hero.speed.to_s}"
+  puts "   Gems: #{$hero.gems.to_s}"
+  puts "   Inventory: #{$hero.inventory.to_s}"
+  puts "   Kills: #{$hero.monsters_killed.to_s}"
+  puts "+===========================+"
+  enter
 end
 
 def confirm_choice(flag)
@@ -23,7 +41,7 @@ def confirm_choice(flag)
 end
 
 def create_hero(name)
-  $hero = Hero.new(name, 100, 100, "", 10, 10, 10, 10, 10, [], 0)
+  $hero = Hero.new(name, 100, 100, "", 10, 10, 10, 10, 10, 50, [], 0)
 end
 
 def get_name
@@ -32,6 +50,12 @@ def get_name
   print "Your name is #{choice} correct?"
   confirm_choice(1)
   create_hero(choice)
+end
+
+def adventure_starting_text
+  print "Beginning adventure...."
+  enter
+  status
 end
 
 def get_caste
@@ -51,4 +75,5 @@ def get_caste
     puts "Sorry, I'm not sure I know what that is..."
   end
   $hero.caste = choice
+  adventure_starting_text
 end
