@@ -1,3 +1,3 @@
-def explore
+def explore(type)
   print "Stuff."
 end
